@@ -4,12 +4,12 @@ const { execFileSync } = require("child_process");
 const { join } = require("path");
 
 const PLATFORMS = {
-  "darwin-arm64": "@git-vibe/cli-darwin-arm64",
-  "darwin-x64": "@git-vibe/cli-darwin-x64",
-  "linux-x64": "@git-vibe/cli-linux-x64",
-  "linux-arm64": "@git-vibe/cli-linux-arm64",
-  "win32-x64": "@git-vibe/cli-win32-x64",
-  "win32-arm64": "@git-vibe/cli-win32-arm64",
+  "darwin-arm64": "@calintzy/cli-darwin-arm64",
+  "darwin-x64": "@calintzy/cli-darwin-x64",
+  "linux-x64": "@calintzy/cli-linux-x64",
+  "linux-arm64": "@calintzy/cli-linux-arm64",
+  "win32-x64": "@calintzy/cli-win32-x64",
+  "win32-arm64": "@calintzy/cli-win32-arm64",
 };
 
 function getBinaryPath() {
@@ -33,7 +33,7 @@ function getBinaryPath() {
   } catch {
     throw new Error(
       `Platform package ${pkg} is not installed.\n` +
-        `Try reinstalling: npm install -g @git-vibe/cli\n` +
+        `Try reinstalling: npm install -g @calintzy/git-vibe\n` +
         `Or install from source: cargo install git-vibe`
     );
   }

@@ -1,5 +1,5 @@
 {
-  "name": "@git-vibe/cli-darwin-x64",
+  "name": "@calintzy/cli-darwin-x64",
   "version": "0.2.0",
   "description": "git-vibe binary for macOS x64 (Intel)",
   "license": "MIT",

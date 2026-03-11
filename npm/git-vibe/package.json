@@ -1,5 +1,5 @@
 {
-  "name": "@git-vibe/cli",
+  "name": "@calintzy/git-vibe",
   "version": "0.2.0",
   "description": "🎭 Vibe check your codebase - Git history analysis with emoji-based reports",
   "license": "MIT",
@@ -22,12 +22,12 @@
     "bin/cli.js"
   ],
   "optionalDependencies": {
-    "@git-vibe/cli-darwin-arm64": "0.2.0",
-    "@git-vibe/cli-darwin-x64": "0.2.0",
-    "@git-vibe/cli-linux-x64": "0.2.0",
-    "@git-vibe/cli-linux-arm64": "0.2.0",
-    "@git-vibe/cli-win32-x64": "0.2.0",
-    "@git-vibe/cli-win32-arm64": "0.2.0"
+    "@calintzy/cli-darwin-arm64": "0.2.0",
+    "@calintzy/cli-darwin-x64": "0.2.0",
+    "@calintzy/cli-linux-x64": "0.2.0",
+    "@calintzy/cli-linux-arm64": "0.2.0",
+    "@calintzy/cli-win32-x64": "0.2.0",
+    "@calintzy/cli-win32-arm64": "0.2.0"
   },
   "engines": {
     "node": ">=14"

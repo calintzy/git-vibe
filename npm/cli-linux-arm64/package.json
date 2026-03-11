@@ -1,5 +1,5 @@
 {
-  "name": "@git-vibe/cli-linux-arm64",
+  "name": "@calintzy/cli-linux-arm64",
   "version": "0.2.0",
   "description": "git-vibe binary for Linux ARM64",
   "license": "MIT",

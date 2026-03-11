@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Crates.io](https://img.shields.io/crates/v/git-vibe.svg)](https://crates.io/crates/git-vibe)
-[![npm](https://img.shields.io/npm/v/@git-vibe/cli.svg)](https://www.npmjs.com/package/@git-vibe/cli)
+[![npm](https://img.shields.io/npm/v/@calintzy/git-vibe.svg)](https://www.npmjs.com/package/@calintzy/git-vibe)
 
 > Vibe check your codebase
 
@@ -82,7 +82,7 @@ Overall Vibe: 💪 Active (74/100)
 ### npm (recommended)
 
 ```bash
-npm install -g @git-vibe/cli
+npm install -g @calintzy/git-vibe
 ```
 
 ### Cargo
