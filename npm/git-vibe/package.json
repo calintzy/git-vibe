@@ -1,5 +1,5 @@
 {
-  "name": "git-vibe",
+  "name": "@git-vibe/cli",
   "version": "0.2.0",
   "description": "🎭 Vibe check your codebase - Git history analysis with emoji-based reports",
   "license": "MIT",

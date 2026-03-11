@@ -33,7 +33,7 @@ function getBinaryPath() {
   } catch {
     throw new Error(
       `Platform package ${pkg} is not installed.\n` +
-        `Try reinstalling: npm install -g git-vibe\n` +
+        `Try reinstalling: npm install -g @git-vibe/cli\n` +
         `Or install from source: cargo install git-vibe`
     );
   }
