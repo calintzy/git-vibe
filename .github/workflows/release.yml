@@ -1,0 +1,146 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - target: aarch64-apple-darwin
+            os: macos-latest
+            npm-pkg: cli-darwin-arm64
+            binary: git-vibe
+          - target: x86_64-apple-darwin
+            os: macos-latest
+            npm-pkg: cli-darwin-x64
+            binary: git-vibe
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+            npm-pkg: cli-linux-x64
+            binary: git-vibe
+          - target: aarch64-unknown-linux-gnu
+            os: ubuntu-latest
+            npm-pkg: cli-linux-arm64
+            binary: git-vibe
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+            npm-pkg: cli-win32-x64
+            binary: git-vibe.exe
+          - target: aarch64-pc-windows-msvc
+            os: windows-latest
+            npm-pkg: cli-win32-arm64
+            binary: git-vibe.exe
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Install cross-compilation tools
+        if: matrix.target == 'aarch64-unknown-linux-gnu'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-aarch64-linux-gnu
+          echo "CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER=aarch64-linux-gnu-gcc" >> $GITHUB_ENV
+
+      - name: Build
+        run: cargo build --release --target ${{ matrix.target }}
+
+      - name: Package binary (unix)
+        if: runner.os != 'Windows'
+        run: |
+          cp target/${{ matrix.target }}/release/git-vibe npm/${{ matrix.npm-pkg }}/git-vibe
+          cd npm/${{ matrix.npm-pkg }}
+          tar czf ../../git-vibe-${{ matrix.target }}.tar.gz git-vibe
+
+      - name: Package binary (windows)
+        if: runner.os == 'Windows'
+        run: |
+          cp target/${{ matrix.target }}/release/git-vibe.exe npm/${{ matrix.npm-pkg }}/git-vibe.exe
+          cd npm/${{ matrix.npm-pkg }}
+          Compress-Archive -Path git-vibe.exe -DestinationPath ../../git-vibe-${{ matrix.target }}.zip
+
+      - name: Upload npm package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-${{ matrix.npm-pkg }}
+          path: npm/${{ matrix.npm-pkg }}/
+
+      - name: Upload release asset
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ matrix.target }}
+          path: git-vibe-${{ matrix.target }}.*
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Download all npm artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Prepare platform packages
+        run: |
+          for pkg in cli-darwin-arm64 cli-darwin-x64 cli-linux-x64 cli-linux-arm64 cli-win32-x64 cli-win32-arm64; do
+            cp -r artifacts/npm-${pkg}/* npm/${pkg}/
+          done
+
+      - name: Publish platform packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          for pkg in cli-darwin-arm64 cli-darwin-x64 cli-linux-x64 cli-linux-arm64 cli-win32-x64 cli-win32-arm64; do
+            cd npm/${pkg}
+            npm publish --access public || true
+            cd ../..
+          done
+
+      - name: Publish main package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          cd npm/git-vibe
+          npm publish --access public
+
+  github-release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download release assets
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          pattern: release-*
+
+      - name: Collect assets
+        run: |
+          mkdir -p release-assets
+          find artifacts -type f \( -name "*.tar.gz" -o -name "*.zip" \) -exec cp {} release-assets/ \;
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: release-assets/*

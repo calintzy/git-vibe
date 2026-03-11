@@ -1,0 +1,14 @@
+{
+  "name": "@git-vibe/cli-win32-x64",
+  "version": "0.2.0",
+  "description": "git-vibe binary for Windows x64",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calintzy/git-vibe"
+  },
+  "os": ["win32"],
+  "cpu": ["x64"],
+  "files": ["git-vibe.exe"],
+  "preferUnplugged": true
+}

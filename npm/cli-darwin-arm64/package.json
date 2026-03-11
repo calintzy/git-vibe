@@ -1,0 +1,14 @@
+{
+  "name": "@git-vibe/cli-darwin-arm64",
+  "version": "0.2.0",
+  "description": "git-vibe binary for macOS ARM64 (Apple Silicon)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calintzy/git-vibe"
+  },
+  "os": ["darwin"],
+  "cpu": ["arm64"],
+  "files": ["git-vibe"],
+  "preferUnplugged": true
+}

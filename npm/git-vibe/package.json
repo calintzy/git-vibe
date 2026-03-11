@@ -1,0 +1,35 @@
+{
+  "name": "git-vibe",
+  "version": "0.2.0",
+  "description": "🎭 Vibe check your codebase - Git history analysis with emoji-based reports",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calintzy/git-vibe"
+  },
+  "homepage": "https://github.com/calintzy/git-vibe",
+  "keywords": [
+    "git",
+    "analysis",
+    "cli",
+    "vibe",
+    "developer-tools"
+  ],
+  "bin": {
+    "git-vibe": "bin/cli.js"
+  },
+  "files": [
+    "bin/cli.js"
+  ],
+  "optionalDependencies": {
+    "@git-vibe/cli-darwin-arm64": "0.2.0",
+    "@git-vibe/cli-darwin-x64": "0.2.0",
+    "@git-vibe/cli-linux-x64": "0.2.0",
+    "@git-vibe/cli-linux-arm64": "0.2.0",
+    "@git-vibe/cli-win32-x64": "0.2.0",
+    "@git-vibe/cli-win32-arm64": "0.2.0"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}

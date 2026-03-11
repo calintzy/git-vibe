@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Crates.io](https://img.shields.io/crates/v/git-vibe.svg)](https://crates.io/crates/git-vibe)
+[![npm](https://img.shields.io/npm/v/git-vibe.svg)](https://www.npmjs.com/package/git-vibe)
 
 > 检查你的代码库氛围
 
@@ -70,6 +71,14 @@ Overall Vibe: 💪 Active (74/100)
 
 ## 安装
 
+### npm（推荐）
+
+```bash
+npm install -g git-vibe
+```
+
+### Cargo
+
 ```bash
 cargo install git-vibe
 ```
@@ -80,7 +89,7 @@ cargo install git-vibe
 cargo install git-vibe --features png
 ```
 
-从源码构建：
+### 从源码构建
 
 ```bash
 git clone https://github.com/calintzy/git-vibe

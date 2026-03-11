@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Crates.io](https://img.shields.io/crates/v/git-vibe.svg)](https://crates.io/crates/git-vibe)
+[![npm](https://img.shields.io/npm/v/git-vibe.svg)](https://www.npmjs.com/package/git-vibe)
 
 > Vibe check your codebase
 
@@ -78,6 +79,14 @@ Overall Vibe: 💪 Active (74/100)
 
 ## Installation
 
+### npm (recommended)
+
+```bash
+npm install -g git-vibe
+```
+
+### Cargo
+
 ```bash
 cargo install git-vibe
 ```
@@ -88,7 +97,7 @@ With PNG support:
 cargo install git-vibe --features png
 ```
 
-Or build from source:
+### Build from source
 
 ```bash
 git clone https://github.com/calintzy/git-vibe

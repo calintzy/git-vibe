@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Crates.io](https://img.shields.io/crates/v/git-vibe.svg)](https://crates.io/crates/git-vibe)
+[![npm](https://img.shields.io/npm/v/git-vibe.svg)](https://www.npmjs.com/package/git-vibe)
 
 > 코드베이스의 바이브를 체크하세요
 
@@ -70,6 +71,14 @@ Overall Vibe: 💪 Active (74/100)
 
 ## 설치
 
+### npm (권장)
+
+```bash
+npm install -g git-vibe
+```
+
+### Cargo
+
 ```bash
 cargo install git-vibe
 ```
@@ -80,7 +89,7 @@ PNG 지원 포함:
 cargo install git-vibe --features png
 ```
 
-소스에서 빌드:
+### 소스에서 빌드
 
 ```bash
 git clone https://github.com/calintzy/git-vibe
